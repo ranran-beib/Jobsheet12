@@ -30,6 +30,27 @@ public class Kafe05 {
     public static void main(String[] args) {
         Menu("Budi", true, "DISKON30");
     }
+    
+    public static int hitungTotalHargaNoAbsen(int pilihanMenu, int banyakItem) {
+        int[] hargaItems = {15000, 20000, 22000, 12000, 10000, 18000};
+
+        int hargaTotal = hargaItems[pilihanMenu - 1] * banyakItem;
+        return hargaTotal;
+    }
+
+    public static void main(String[] args) {
+        java.util.Scanner sc = new java.util.Scanner(System.in);
+
+        System.out.print("Masukkan nomor menu yang ingin Anda pesan: ");
+        int pilihanMenu = sc.nextInt();
+
+        System.out.print("Masukkan jumlah item yang ingin dipesan: ");
+        int banyakItem = sc.nextInt();
+
+        int totalHarga = hitungTotalHargaNoAbsen(pilihanMenu, banyakItem);
+        System.out.println("Total harga untuk pesanan Anda: Rp " + totalHarga);
+    }
+
 }
 
 
