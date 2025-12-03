@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class NilaiMahasiswa05 {
+
+    public void isianArray(double[] nilai) {
+        Scanner input = new Scanner(System.in);
+        for (int i = 0; i < nilai.length; i++) {
+            System.out.print("Masukkan nilai mahasiswa ke-" + (i + 1) + ": ");
+            nilai[i] = input.nextDouble();
+        }
+    }
+
+    public void tampilArray(double[] nilai) {
+        System.out.println("\n=== Daftar Nilai Mahasiswa ===");
+        for (double n : nilai) {
+            System.out.println(n);
+        }
+    }
+
+    public double hitTot(double[] nilai) {
+        double total = 0;
+        for (double n : nilai) {
+            total += n;
+        }
+        return total;
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Masukkan jumlah mahasiswa: ");
+        int N = input.nextInt();
+
+        double[] nilaiMhs = new double[N];
+
+        NilaiMahasiswa05 nm = new NilaiMahasiswa05();
+
+        nm.isianArray(nilaiMhs);
+        nm.tampilArray(nilaiMhs);
+
+        double totalNilai = nm.hitTot(nilaiMhs);
+
+        System.out.println("\nTotal nilai seluruh mahasiswa = " + totalNilai);
+    }
+}
