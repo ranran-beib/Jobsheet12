@@ -30,12 +30,21 @@ public class Kafe05 {
     public static void main(String[] args) {
         Menu("Budi", true, "DISKON30");
     }
-    
-    public static int hitungTotalHargaNoAbsen(int pilihanMenu, int banyakItem) {
+
+    public static int hitungTotalHargaNoAbsen(int pilihanMenu, int banyakItem, String kodePromo) {
         int[] hargaItems = {15000, 20000, 22000, 12000, 10000, 18000};
 
-        int hargaTotal = hargaItems[pilihanMenu - 1] * banyakItem;
-        return hargaTotal;
+        int totalHarga = hargaItems[pilihanMenu - 1] * banyakItem;
+
+        if (kodePromo.equals("DISKON50")) {
+            totalHarga = totalHarga - (totalHarga * 50 / 100);
+        } else if (kodePromo.equals("DISKON30")) {
+            totalHarga = totalHarga - (totalHarga * 30 / 100);
+        } else {
+            System.out.println("Kode promo invalid!");
+        }
+
+        return totalHarga;
     }
 
     public static void main(String[] args) {
@@ -44,13 +53,16 @@ public class Kafe05 {
         System.out.print("Masukkan nomor menu yang ingin Anda pesan: ");
         int pilihanMenu = sc.nextInt();
 
-        System.out.print("Masukkan jumlah item yang ingin dipesan: ");
+        System.out.print("Masukkan jumlah item pesanan: ");
         int banyakItem = sc.nextInt();
+        sc.nextLine(); // clear buffer
 
-        int totalHarga = hitungTotalHargaNoAbsen(pilihanMenu, banyakItem);
-        System.out.println("Total harga untuk pesanan Anda: Rp " + totalHarga);
+        System.out.print("Masukkan kode promo: ");
+        String kodePromo = sc.nextLine();
+
+        int totalHarga = hitungTotalHargaNoAbsen(pilihanMenu, banyakItem, kodePromo);
+        System.out.println("Total bayar Anda: Rp " + totalHarga);
     }
-
 }
 
 
@@ -71,3 +83,16 @@ public class Kafe05 {
 // 4. isMember → jika true tampil pesan diskon, jika false tidak tampil.
 // 5. Jika fungsi dipanggil tanpa parameter → error, karena fungsi membutuhkan input.
 // 6. Parameter kodePromo digunakan untuk mengecek kode promosi dan menentukan besar diskon.
+
+// Jawaban Pertanyaan Percobaan 3
+
+// 1. Fungsi butuh nilai kembali jika hasilnya ingin dipakai lagi (misal perhitungan total harga).
+//    Tidak perlu nilai kembali jika hanya menampilkan output (misal fungsi menampilkan menu).
+// 2. Fungsi hitungTotalHargaNoAbsen mengembalikan int (total harga).
+//    Parameternya:
+//    pilihanMenu (int) → menentukan menu mana yang dipilih.
+//    banyakItem (int) → jumlah pesanan.
+// 3. Parameter kodePromo mempengaruhi diskon:
+//    DISKON50 → potong 50%.
+//    DISKON30 → potong 30%.
+//    selain itu → invalid, tanpa diskon.
